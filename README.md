@@ -1,0 +1,16 @@
+# Excalidraw
+
+Excalidraw runs inside its own desktop window. Open drawings from My files;
+use Files to upload `.excalidraw` files from a computer. Save writes to My
+files on the device and then syncs with the account server. Expand Save
+location to choose a folder or filename. Existing files require confirmation,
+and version conflicts are reported without silently overwriting another copy.
+
+A failed open leaves the current drawing intact. The app validates the outer
+file structure before loading; this does not guarantee every possible drawing
+or embedded image is compatible. Local and live viewport tests cover basic
+shape editing and save/reopen, not every Excalidraw feature or a physical phone.
+Embedded third-party services and AI features remain disabled.
+
+Install the pinned app dependencies with `npm ci --ignore-scripts` before
+building. Runtime bundles and `node_modules` are generated, not source files.
