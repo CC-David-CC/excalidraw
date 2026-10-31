@@ -14,3 +14,5 @@ Embedded third-party services and AI features remain disabled.
 
 Install the pinned app dependencies with `npm ci --ignore-scripts` before
 building. Runtime bundles and `node_modules` are generated, not source files.
+
+Saving captures the destination and drawing snapshot before waiting for storage. Later edits remain unsaved. A separate notice reports mirror-detected changes, conflicts or unavailability while the current drawing stays open; resolve conflicts in Files or save a copy. Overwrite checks use metadata. Local desktop, emulated-phone and 4K and live emulated-phone account tests cover two drawings, delayed saves, conflicts, sync and fresh-session recovery. A separate unit check detects embedded image data changes even when their lengths match; broader embedded-image workflows remain unverified.
