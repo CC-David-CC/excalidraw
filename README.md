@@ -36,3 +36,14 @@ saving a canvas edit and the inserted image, then using the editor's Undo and
 Redo buttons. The test passed locally on desktop, emulated phone and 4K, and on
 the live site at emulated-phone size. Keyboard undo and physical touch have not
 been established by that test.
+
+**Export PNG** creates a separate image in My files; set its filename or folder
+under Save location. The PNG is a snapshot, not an editable drawing, so keep the
+`.excalidraw` file too. Export is rendered locally, with the longest dimension
+bounded to 4096 pixels. Replacing an existing image asks for confirmation;
+changes made during export remain in the drawing and are not included in the
+earlier PNG. Local desktop, emulated-phone and 4K and live emulated-phone
+account tests cover a delayed export, overwrite cancellation, project sync and
+opening the result in Image Editor. A separate local and live phone-sized test
+checks that an inserted image appears in the exported PNG. Large or complex
+scenes and physical touch remain unverified.
