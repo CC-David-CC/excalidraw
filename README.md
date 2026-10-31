@@ -29,3 +29,10 @@ and 4K account tests cover PNG upload, invalid-image recovery, embedded save,
 original deletion and visible fresh-session reopen; JPEG and WebP round trips
 were also checked locally. The PNG workflow passed live at phone size. Physical
 touch, large-image performance and every supported image variant remain unverified.
+
+While an image is being selected and decoded, file actions are disabled until
+it is ready; canvas editing remains available. A delayed-decoding test covers
+saving a canvas edit and the inserted image, then using the editor's Undo and
+Redo buttons. The test passed locally on desktop, emulated phone and 4K, and on
+the live site at emulated-phone size. Keyboard undo and physical touch have not
+been established by that test.
