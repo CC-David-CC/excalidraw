@@ -64,3 +64,9 @@ tested in a browser; physical macOS and phone behavior remain unverified.
 An invalid directly opened drawing reports the error and starts an independent
 Untitled canvas without changing the original. Local desktop and emulated-phone
 account tests cover editing and syncing that fallback; physical touch is unverified.
+
+Closing while a drawing save or PNG export is in progress asks for confirmation,
+including when the drawing was clean at the start. Declining close lets the
+operation continue. Local desktop and emulated-phone tests cover the prompts,
+save completion, and PNG signature; physical touch is not verified. Closing
+cannot guarantee cancellation of a file write already dispatched to storage.
