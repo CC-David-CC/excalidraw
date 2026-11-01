@@ -39,7 +39,14 @@ in the `.excalidraw` document, so the saved drawing does not depend on the
 original image remaining in My files. Image data expands when embedded; the
 entire drawing must fit the 128 MiB file limit and large images can require
 substantial browser memory. The app checks the image signature and asks the
-browser to decode it before adding it. Opened drawings are brought into view
+browser to decode it before adding it. Animated PNG and WebP are rejected on
+insertion because PNG/SVG exports are static; choose a still image instead.
+The animation check inspects container headers and is not a complete image
+integrity check. Previously saved drawings are not revalidated for animation.
+Local registered-account desktop and emulated-phone tests cover both animated
+formats, invalid and corrupt images, still PNG insertion and export, server
+sync, fresh-session reopening and separate-account isolation. Physical touch
+and other image variants remain unverified. Opened drawings are brought into view
 when moving between differently sized windows. Local desktop, emulated-phone
 and 4K account tests cover PNG upload, invalid-image recovery, embedded save,
 original deletion and visible fresh-session reopen; JPEG and WebP round trips
