@@ -174,3 +174,17 @@ desktop and emulated-phone tests cover refused future/selection types, original
 preservation, editing and syncing a separate drawing, fresh-session reopening,
 and legacy migration. This check does not guarantee preservation of every
 future field or element semantic; physical touch remains unverified.
+
+**Insert image from My files** also accepts simple, static SVG artwork. It is
+embedded as an image, so edit its individual shapes in SVG Editor and reinsert
+it if needed. To keep insertion bounded and self-contained, SVGs over 1 MiB,
+oversized dimensions, embedded images, scripts, animation, `<use>`, linked
+styles or nonlocal references are refused. Some otherwise valid SVGs therefore
+need simplification before insertion. Local registered-account desktop and
+emulated-phone tests saved an SVG Editor example, inserted it, exported a PNG,
+checked colored pixels and server sync, and reopened the drawing with the image
+visible. Tests also rejected oversized, animated and linked SVGs, including marker,
+cursor and escaped CSS URL attributes, without changing the drawing. These
+checks are not a comprehensive SVG security audit. Complex SVG effects, all
+possible input encodings and
+physical touch remain unverified.
