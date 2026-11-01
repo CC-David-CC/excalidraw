@@ -1,10 +1,14 @@
 # Excalidraw
 
-Excalidraw runs inside its own desktop window. Open drawings from My files;
+Excalidraw runs inside its own desktop window. Use its main menu to open drawings from My files;
 use Files to upload `.excalidraw` files from a computer. Save writes to My
-files on the device and then syncs with the account server. Expand Save
-location to choose a folder or filename. Existing files require confirmation,
+files on the device and then syncs with the account server. The main menu has
+Save drawing, Save drawing as, and folder-selection actions. Existing files require confirmation,
 and version conflicts are reported without silently overwriting another copy.
+The editor's main menu keeps canvas search, reset, background, theme and help.
+The standard image picker is replaced by **Insert image from My files**; upload
+computer files through Files first. A saved drawing is associated with its
+window so the desktop can restore it after signing in again.
 
 A failed open leaves the current drawing intact. The app validates the outer
 file structure before loading; this does not guarantee every possible drawing
@@ -37,8 +41,8 @@ Redo buttons. The test passed locally on desktop, emulated phone and 4K, and on
 the live site at emulated-phone size. Keyboard undo and physical touch have not
 been established by that test.
 
-**Export PNG** creates a separate image in My files; set its filename or folder
-under Save location. The PNG is a snapshot, not an editable drawing, so keep the
+**Export PNG** in the main menu creates a separate image in My files; choose its
+filename in the prompt or select a PNG folder from the menu. The PNG is a snapshot, not an editable drawing, so keep the
 `.excalidraw` file too. Export is rendered locally, with the longest dimension
 bounded to 4096 pixels. Replacing an existing image asks for confirmation;
 changes made during export remain in the drawing and are not included in the
