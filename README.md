@@ -164,3 +164,13 @@ currently be safely checked and are refused, leaving the drawing unchanged.
 JPEG headers must fit within the first MiB, GIF data must fit within 24 MiB of
 encoded input, and SVG source within one MiB. These limits reduce bitmap memory
 risk; complex SVG rendering and browser decoder memory use are not fully bounded.
+
+The bundled editor silently drops element types it cannot restore, including
+transient `selection` records. Opening such a drawing is now refused before
+the current canvas or original file is changed, rather than allowing a later
+Save to overwrite it with missing elements. The known legacy `draw` type remains
+supported and is migrated by Excalidraw to `line`. Local registered-account
+desktop and emulated-phone tests cover refused future/selection types, original
+preservation, editing and syncing a separate drawing, fresh-session reopening,
+and legacy migration. This check does not guarantee preservation of every
+future field or element semantic; physical touch remains unverified.
