@@ -60,3 +60,7 @@ Ctrl/Command+Shift+S for the themed Save As prompt when the drawing is focused.
 It ignores other windows, dialogs and active input-method composition, and
 removes its listener on close. Real drawing, account sync and saved content were
 tested in a browser; physical macOS and phone behavior remain unverified.
+
+An invalid directly opened drawing reports the error and starts an independent
+Untitled canvas without changing the original. Local desktop and emulated-phone
+account tests cover editing and syncing that fallback; physical touch is unverified.
