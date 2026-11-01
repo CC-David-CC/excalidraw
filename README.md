@@ -19,6 +19,12 @@ or embedded image is compatible. Local and live viewport tests cover basic
 shape editing and save/reopen, not every Excalidraw feature or a physical phone.
 Embedded third-party services and AI features remain disabled.
 
+Opening a drawing whose visible image refers to missing embedded data is
+refused before the existing scene is replaced. Deleted image elements do not
+need their old data. Local desktop and emulated-phone account tests cover the
+refusal, retaining a prior shape, embedded PNG save and server sync/reopen;
+they do not validate every image encoding or physical touch.
+
 Changing the saved canvas background or grid settings marks the drawing as
 unsaved; panning and zooming do not. Save the drawing to retain those settings.
 
