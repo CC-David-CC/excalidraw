@@ -90,3 +90,14 @@ and emulated-phone checks exercise the context menu and library shortcut, save
 a drawing to My files, and record no third-party requests during those flows.
 The controls are suppressed in the embedded UI; this is not a network security
 boundary. Physical touch and every upstream feature are not covered.
+
+If a saved drawing is temporarily unavailable while restoring a window, the
+original remains associated with the window and **Retry saved drawing** appears
+in its My files menu. Retrying asks before discarding unsaved scratch edits. A
+scratch drawing saves separately, including when the original is named
+`Untitled.excalidraw`; saving a new drawing clears the restore target. Local
+registered-account desktop and emulated-phone tests injected a read failure,
+drew a rectangle, cancelled retry, synced the separate scratch copy, verified
+the original server bytes and retried the original. Invalid drawing handling
+was tested separately. Physical touch and other storage failure modes remain
+unverified.
