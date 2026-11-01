@@ -109,3 +109,11 @@ folder; an explicitly chosen export destination stays in that window. Local
 registered-account desktop and emulated-phone tests covered drawing, saving,
 PNG export and server sync, a custom destination, and fresh-session reopen.
 Physical touch remains unverified.
+
+For a first exercise, choose **Try a flow diagram** from the main menu. The
+example opens as an unsaved, editable drawing with its own suggested filename;
+move or add shapes, save it in My files, and export a PNG if desired. Opening
+the example asks before discarding unsaved drawing work and keeps a saved
+original separate. Local registered-account desktop and emulated-phone tests
+covered editing, cancel, save, sync, fresh-session reopen, PNG export and close.
+The tests used mouse automation at phone dimensions; physical touch is unverified.
