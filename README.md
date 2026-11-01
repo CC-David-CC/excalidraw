@@ -5,6 +5,9 @@ use Files to upload `.excalidraw` files from a computer. Save writes to My
 files on the device and then syncs with the account server. The main menu has
 Save drawing, Save drawing as, and folder-selection actions. Existing files require confirmation,
 and version conflicts are reported without silently overwriting another copy.
+Only one account-file or folder choice can be active in a window. Other file
+actions cannot start until that choice finishes; cancelling leaves the destination
+unchanged. Closing the window invalidates a pending choice.
 The editor's main menu keeps canvas search, reset, background, theme and help.
 The standard image picker is replaced by **Insert image from My files**; upload
 computer files through Files first. A saved drawing is associated with its
