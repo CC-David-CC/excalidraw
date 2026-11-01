@@ -143,3 +143,13 @@ editable drawing's canvas background. Local registered-account desktop and
 emulated-phone tests checked PNG corner alpha, SVG background presence, server
 sync and fresh-session drawing reopen. Complex scenes and physical touch remain
 unverified.
+
+Before replacing the current drawing, the editor now checks that each
+referenced embedded image can be decoded. A corrupt embedded image is refused
+and the original file and current scene are kept. Local registered-account
+desktop and phone-sized tests covered corrupt-image refusal, retained canvas,
+account sync and a valid embedded-image drawing reopen. A separate workflow
+saved a drawing containing a real PNG, exported PNG and SVG, opened the PNG in
+Image Editor, resized and saved it, and checked colored pixels and server sync.
+This does not establish every image format, huge-image memory behavior, complex
+SVG fidelity or physical touch.
