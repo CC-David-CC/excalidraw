@@ -101,3 +101,11 @@ drew a rectangle, cancelled retry, synced the separate scratch copy, verified
 the original server bytes and retried the original. Invalid drawing handling
 was tested separately. Physical touch and other storage failure modes remain
 unverified.
+
+PNG export suggests a filename next to the saved drawing (for example,
+`/Projects/Lab.excalidraw` suggests `/Projects/Lab.png`). Saving or opening a
+new drawing updates that suggestion until you choose a different PNG name or
+folder; an explicitly chosen export destination stays in that window. Local
+registered-account desktop and emulated-phone tests covered drawing, saving,
+PNG export and server sync, a custom destination, and fresh-session reopen.
+Physical touch remains unverified.
