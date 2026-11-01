@@ -51,3 +51,9 @@ account tests cover a delayed export, overwrite cancellation, project sync and
 opening the result in Image Editor. A separate local and live phone-sized test
 checks that an inserted image appears in the exported PNG. Large or complex
 scenes and physical touch remain unverified.
+
+The local shortcut candidate uses Ctrl/Command+S for My files save and
+Ctrl/Command+Shift+S for the themed Save As prompt when the drawing is focused.
+It ignores other windows, dialogs and active input-method composition, and
+removes its listener on close. Real drawing, account sync and saved content were
+tested in a browser; physical macOS and phone behavior remain unverified.
