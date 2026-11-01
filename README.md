@@ -117,3 +117,14 @@ the example asks before discarding unsaved drawing work and keeps a saved
 original separate. Local registered-account desktop and emulated-phone tests
 covered editing, cancel, save, sync, fresh-session reopen, PNG export and close.
 The tests used mouse automation at phone dimensions; physical touch is unverified.
+
+**Export SVG** in the native menu writes a separate vector image to My files;
+it suggests a name alongside the saved drawing and lets you choose another
+folder or filename. Keep the editable `.excalidraw` drawing too. Existing SVGs
+require confirmation before replacement and an export captures a snapshot;
+changes made while it is being created remain unsaved in the drawing. Local
+registered-account desktop and emulated-phone tests drew a rectangle, exported
+valid SVG, cancelled a replacement, synced it, opened the vector in SVG Editor
+and reopened the drawing in a fresh browser session. The existing PNG workflow
+also passed both sizes. Complex scenes, embedded images and fonts in SVG export,
+SVG Editor round-trip fidelity, and physical touch remain unverified.
