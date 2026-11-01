@@ -16,6 +16,9 @@ or embedded image is compatible. Local and live viewport tests cover basic
 shape editing and save/reopen, not every Excalidraw feature or a physical phone.
 Embedded third-party services and AI features remain disabled.
 
+Changing the saved canvas background or grid settings marks the drawing as
+unsaved; panning and zooming do not. Save the drawing to retain those settings.
+
 Install the pinned app dependencies with `npm ci --ignore-scripts` before
 building. Runtime bundles and `node_modules` are generated, not source files.
 
