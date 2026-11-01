@@ -3,3 +3,8 @@
 .excalidraw-app .app-status{padding:6px;font-size:12px;color:#526078}
 .excalidraw-file-warning{margin:4px 6px;padding:6px 8px;border-left:4px solid #a65300;background:#fff1d6;color:#4d2900}
 .excalidraw-app .codi-excal-file-action{min-height:44px}
+
+/* Upstream library import, export and public browsing are not wired to My files. */
+.excalidraw-app .sidebar-trigger__label-element:has(.default-sidebar-trigger),
+.excalidraw-app .default-sidebar{display:none!important}
+.excalidraw-app .context-menu-item[hidden]{display:none!important}

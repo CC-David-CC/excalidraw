@@ -70,3 +70,14 @@ including when the drawing was clean at the start. Declining close lets the
 operation continue. Local desktop and emulated-phone tests cover the prompts,
 save completion, and PNG signature; physical touch is not verified. Closing
 cannot guarantee cancellation of a file write already dispatched to storage.
+
+The upstream shape-library interface is temporarily disabled because its local
+import/export is not connected to My files and its public browsing/publishing
+uses Excalidraw's service. Deferred features: reusable personal shapes with
+account-backed storage; library file import and export through My files; and
+public library browsing and publishing if a future integration is approved.
+Drawings, local image insertion and PNG export remain available. Local desktop
+and emulated-phone checks exercise the context menu and library shortcut, save
+a drawing to My files, and record no third-party requests during those flows.
+The controls are suppressed in the embedded UI; this is not a network security
+boundary. Physical touch and every upstream feature are not covered.
