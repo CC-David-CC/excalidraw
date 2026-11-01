@@ -153,3 +153,14 @@ saved a drawing containing a real PNG, exported PNG and SVG, opened the PNG in
 Image Editor, resized and saved it, and checked colored pixels and server sync.
 This does not establish every image format, huge-image memory behavior, complex
 SVG fidelity or physical touch.
+
+Embedded images are checked before the browser decodes them: a single image is
+limited to 40 megapixels, drawings to 80 megapixels total across 256 unique
+images. PNG, JPEG, WebP, GIF and simple SVG dimensions are checked; GIF frame
+sizes count towards the image limit; animated PNG and WebP are refused.
+SVGs containing embedded images or foreign
+content, unusually complex SVG dimensions and unrecognized image formats cannot
+currently be safely checked and are refused, leaving the drawing unchanged.
+JPEG headers must fit within the first MiB, GIF data must fit within 24 MiB of
+encoded input, and SVG source within one MiB. These limits reduce bitmap memory
+risk; complex SVG rendering and browser decoder memory use are not fully bounded.
