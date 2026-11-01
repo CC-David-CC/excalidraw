@@ -128,3 +128,11 @@ valid SVG, cancelled a replacement, synced it, opened the vector in SVG Editor
 and reopened the drawing in a fresh browser session. The existing PNG workflow
 also passed both sizes. Complex scenes, embedded images and fonts in SVG export,
 SVG Editor round-trip fidelity, and physical touch remain unverified.
+
+The native menu's **Export background** switch controls both PNG and SVG
+exports for this window. It starts On, preserving the drawing background; turn it
+Off for transparent exported artwork. This affects the exported copy, not the
+editable drawing's canvas background. Local registered-account desktop and
+emulated-phone tests checked PNG corner alpha, SVG background presence, server
+sync and fresh-session drawing reopen. Complex scenes and physical touch remain
+unverified.
