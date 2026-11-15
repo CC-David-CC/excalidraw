@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {imageDimensions,checkDrawingImages} from '../apps/system/excalidraw/image-budget.mjs';
+import {imageDimensions,checkDrawingImages} from "../../image-budget.mjs";
 function png(w,h){const b=new Uint8Array(45),v=new DataView(b.buffer);b.set([137,80,78,71,13,10,26,10]);b.set([73,72,68,82],12);v.setUint32(16,w);v.setUint32(20,h);v.setUint32(8,13);b.set([73,68,65,84],37);return b;}
 const data=b=>'data:image/png;base64,'+Buffer.from(b).toString('base64');
 assert.equal(imageDimensions(png(8000,5000),'image/png').pixels,40_000_000);
