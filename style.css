@@ -8,3 +8,14 @@
 .excalidraw-app .sidebar-trigger__label-element:has(.default-sidebar-trigger),
 .excalidraw-app .default-sidebar{display:none!important}
 .excalidraw-app .context-menu-item[hidden]{display:none!important}
+
+/* The compact menu opens above the bottom toolbar inside its desktop window. */
+.excalidraw-stage { container: sketch-stage / size; }
+@container sketch-stage (min-height: 1px) {
+  .excalidraw--mobile .dropdown-menu--mobile .dropdown-menu-container {
+    box-sizing: border-box;
+    max-height: calc(100cqh - 5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+}

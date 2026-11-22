@@ -191,3 +191,7 @@ cursor and escaped CSS URL attributes, without changing the drawing. These
 checks are not a comprehensive SVG security audit. Complex SVG effects, all
 possible input encodings and
 physical touch remain unverified.
+
+### Saving on a phone or tablet
+
+Tap the main menu once after drawing, then choose **Save drawing** or **Save drawing as…**. In a short window, scroll inside the menu to reach the rest of its commands. Keyboard users can focus the menu button and press Enter. [Compact menu screenshot](docs/compact-menu.png)

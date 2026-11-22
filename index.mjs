@@ -49,4 +49,35 @@ function View({host,lib}){
  const menu=h(MainMenu,null,h(MainMenu.Group,{title:'Start'},h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:example,disabled:addingImage||exporting},'Try a flow diagram')),h(MainMenu.Group,{title:'My files'},h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:browse,disabled:addingImage||exporting},'Open from My files'),recoveryTarget&&h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:retry,disabled:addingImage||exporting},'Retry saved drawing'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:insertImage,disabled:addingImage||exporting},'Insert image from My files'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:save,disabled:addingImage||exporting},'Save drawing'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseName(path,'Save drawing as',save),disabled:addingImage||exporting},'Save drawing as…'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseFolder(path,'Untitled.excalidraw'),disabled:addingImage||exporting},'Choose drawing folder…'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>setExportBackground(value=>!value),disabled:addingImage||exporting},'Export background: '+(exportBackground?'On':'Off (transparent)')),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseName(pngPath,'Export PNG',exportPNG),disabled:addingImage||exporting},'Export PNG…'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseFolder(pngPath,'Drawing.png'),disabled:addingImage||exporting},'Choose PNG folder…'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseName(svgPath,'Export SVG',exportSVG),disabled:addingImage||exporting},'Export SVG…'),h(MainMenu.Item,{className:'codi-excal-file-action',onSelect:()=>chooseFolder(svgPath,'Drawing.svg'),disabled:addingImage||exporting},'Choose SVG folder…')),h(MainMenu.Separator),h(MainMenu.DefaultItems.SearchMenu),h(MainMenu.DefaultItems.ClearCanvas),h(MainMenu.DefaultItems.ChangeCanvasBackground),h(MainMenu.DefaultItems.ToggleTheme),h(MainMenu.DefaultItems.Help));
  return h(React.Fragment,null,h('input',{ref:path,type:'text',hidden:true,defaultValue:state.path,'aria-label':'Drawing file path'}),h('input',{ref:pngPath,type:'text',hidden:true,defaultValue:suggestedPNG(state.path),'aria-label':'PNG file path'}),h('input',{ref:svgPath,type:'text',hidden:true,defaultValue:suggestedSVG(state.path),'aria-label':'SVG file path'}),fileWarning&&h('p',{className:'excalidraw-file-warning',role:'status'},fileWarning),h('div',{className:'excalidraw-stage'},initial&&h(Excalidraw,{key:sceneKey,initialData:initial,excalidrawAPI:value=>{api.current=value},validateEmbeddable:false,aiEnabled:false,UIOptions:{tools:{image:false},canvasActions:{loadScene:false,export:false,saveAsImage:false,saveToActiveFile:false}},onChange:(elements,appState,files)=>{latest.current={elements,appState,files};const next=captureScene(elements,files,appState),prior=previous.current;previous.current=next;if(prior===null)return;if(sceneChanged(prior,next)){state.dirty=true;state.edits++;setMessage('Unsaved changes.');}}},menu)),h('div',{className:'app-status','aria-live':'polite'},message));
 }
-export function mount(host){const element=host.ui.make('div','window-content excalidraw-app'),root=createRoot(element);let disposed=false;root.render(h('p',null,'Loading Excalidraw…'));import('@excalidraw/excalidraw').then(lib=>{if(!disposed)root.render(h(View,{host,lib}));}).catch(e=>{if(!disposed)root.render(h('p',null,'Could not load Excalidraw: '+e.message));});return {element,dispose(){if(disposed)return;disposed=true;root.unmount();}};}
+// Chromium can suppress the compatibility click on a menu tap immediately after
+// a canvas drag. Complete that tap through the button's ordinary click handler.
+function bindMenuTap(element, signal) {
+  const selector = 'button.main-menu-trigger';
+  let press;
+  element.addEventListener('touchstart', event => {
+    const touch = event.touches[0];
+    const button = event.target.closest?.(selector);
+    press = button && event.touches.length === 1
+      ? {button, id: touch.identifier, x: touch.clientX, y: touch.clientY, time: event.timeStamp}
+      : null;
+  }, {capture: true, passive: true, signal});
+  element.addEventListener('touchmove', event => {
+    if (!press) return;
+    const touch = event.touches[0];
+    if (event.touches.length !== 1 || Math.hypot(touch.clientX - press.x, touch.clientY - press.y) > 9) press = null;
+  }, {capture: true, passive: true, signal});
+  element.addEventListener('touchcancel', () => { press = null; }, {signal, capture: true});
+  element.addEventListener('touchend', event => {
+    const tap = press;
+    press = null;
+    if (!tap || event.touches.length || !event.cancelable || event.timeStamp - tap.time > 600) return;
+    const touch = event.changedTouches[0];
+    if (touch.identifier !== tap.id || Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 9) return;
+    const button = element.ownerDocument.elementFromPoint(touch.clientX, touch.clientY)?.closest(selector);
+    if (button !== tap.button) return;
+    event.preventDefault();
+    button.click();
+  }, {capture: true, passive: false, signal});
+}
+
+export function mount(host){const element=host.ui.make('div','window-content excalidraw-app'),root=createRoot(element);bindMenuTap(element,host.signal);let disposed=false;root.render(h('p',null,'Loading Excalidraw…'));import('@excalidraw/excalidraw').then(lib=>{if(!disposed)root.render(h(View,{host,lib}));}).catch(e=>{if(!disposed)root.render(h('p',null,'Could not load Excalidraw: '+e.message));});return {element,dispose(){if(disposed)return;disposed=true;root.unmount();}};}
