@@ -1,8 +1,7 @@
 # Excalidraw
 
 Excalidraw runs inside its own desktop window. Use its main menu to open drawings from My files;
-use Files to upload `.excalidraw` files from a computer. Save writes to My
-files on the device and then syncs with the account server. The main menu has
+use Files to upload `.excalidraw` files from a computer. Save writes to My files. The main menu has
 Save drawing, Save drawing as, and folder-selection actions. Existing files require confirmation,
 and version conflicts are reported without silently overwriting another copy.
 Only one account-file or folder choice can be active in a window. Other file
@@ -12,6 +11,10 @@ The editor's main menu keeps canvas search, reset, background, theme and help.
 The standard image picker is replaced by **Insert image from My files**; upload
 computer files through Files first. A saved drawing is associated with its
 window so the desktop can restore it after signing in again.
+
+Anon saves to the temporary workspace in this browser. Signed-in files sync to the account. Double-click a saved file in Files to continue editing it.
+
+![Editor after reopening a saved file from WebOS Files](docs/workspace.png)
 
 A failed open leaves the current drawing intact. The app validates the outer
 file structure before loading; this does not guarantee every possible drawing
